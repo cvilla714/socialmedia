@@ -19,7 +19,8 @@ class FriendshipsController < ApplicationController
 
     def update
         # @friendship = Friendship.find(params[:id])
-        @friendship = Friendship.find([params[:id].to_i, current_user.id])
+        # @friendship = Friendship.find([params[:id].to_i, current_user.id])
+        @friendship = Friendship.find([current_user.id, params[:id].to_i])
         @friendship.update(status: true)
         # format.html { redirect_to friendships_path }
         redirect_to friendships_path
@@ -28,7 +29,9 @@ class FriendshipsController < ApplicationController
     def destroy
         # @friendship = Friendship.find(params[:id])
         @friendship = Friendship.find([params[:id].to_i, current_user.id])
+        @friendship2 = Friendship.find([current_user.id, params[:id].to_i])
         @friendship.destroy
+        @friendship2.destroy
         # format.html { redirect_to friendships_path }
         redirect_to friendships_path
     end
