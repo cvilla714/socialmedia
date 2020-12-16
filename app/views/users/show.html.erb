@@ -1,0 +1,13 @@
+<section class="user-section">
+<div class="space-between">
+  <h2><%= "Name: #{@user.name}" %></h2>
+  <%# link_to "Follow", destroy_user_session_url, method: :delete %>
+   <%= render partial: 'users/friend_btn' %>
+   </div>
+  <article class="timeline">
+    <h3>Recent posts:</h3>
+    <ul class="posts">
+      <%= render @posts %>
+    </ul>
+  </article>
+</section>
