@@ -21,13 +21,19 @@ class User < ApplicationRecord
   end
 
   def requests
-    Friendship.where(['friend_id = ? AND status IS null', self[:id]])
+    friend = Friendship.select(:status).where("(friend_id = #{self[:id]} AND user_id = #{user_id})")
+    friend2 = Friendship.select(:status).where("(friend_id = #{user_id} AND user_id = #{self[:id]})")
+    return false if friend.empty? || !friend2.empty?
+
+    true
   end
 
   def friend?(user_id)
     friend = Friendship.select(:status).where("(friend_id = #{self[:id]} AND user_id = #{user_id})")
-    return false if friend.empty?
+    friend2 = Friendship.select(:status).where("(friend_id = #{user_id} AND user_id = #{self[:id]})")
+    return nil if friend.empty? && !friend2.empty?
+    return false if friend2.empty?
 
-    friend.first.statu
+    friend2.first.status
   end
 end
