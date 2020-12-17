@@ -31,7 +31,7 @@ gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 gem 'composite_primary_keys'
-
+gem 'hirb', '~> 0.7.3'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

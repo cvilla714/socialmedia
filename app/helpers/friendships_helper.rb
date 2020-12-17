@@ -1,5 +1,5 @@
 module FriendshipsHelper
-  def follow_btn
+  def follow_btn(id = nil, is_me = false)
     out = ''
     friend = current_user.friend?(id || params[:id])
     if is_me || @is_me
